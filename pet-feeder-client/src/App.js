@@ -18,7 +18,9 @@ function App() {
        <NavBar />
 
        <Switch>
-          <Route exact path="/">Pets</Route>
+          <Route exact path="/">
+            <PetsContainer />
+          </Route>
           <Route exact path="/pets/new">Add Pet</Route>
        </Switch>
      </Router>
