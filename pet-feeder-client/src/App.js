@@ -1,8 +1,27 @@
+import React from "react";
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+  Link,
+} from "react-router-dom";
+import PetsContainer from './containers/PetsContainer'
+import PetsFormContainer from './containers/PetsFormContainer'
+import NavBar from './components/NavBar';
+
 
 function App() {
   return (
     <div className="App">
-     Hello
+
+     <Router>
+       <NavBar />
+
+       <Switch>
+          <Route exact path="/">Pets</Route>
+          <Route exact path="/pets/new">Add Pet</Route>
+       </Switch>
+     </Router>
     </div>
   );
 }
