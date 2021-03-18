@@ -9,22 +9,25 @@ class PetsContainer extends Component {
         loading: true
     }
 
+    
+
     componentDidMount(){
-        setTimeout(() => {
+        fetch("http://localhost:3001/pets", {
+            method: "get",
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            }
+        })
+        .then(response => response.json())
+        .then(petsJson => {
+            console.log("Json return", petsJson)
             this.setState({
-                pets: [{
-                    id: 1,
-                    name: 'Fin',
-                    type: 'Bearded Dragon'
-                }, {
-                    id: 2,
-                    name: 'Manda',
-                    type: 'Axolotyl'
-                }],
+                pets: petsJson,
                 loading: false
             })
+        })
 
-        }, 1000)
         
     }
 

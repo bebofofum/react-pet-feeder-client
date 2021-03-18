@@ -4,6 +4,7 @@ import {
   Switch,
   Route,
   Link,
+  useHistory
 } from "react-router-dom";
 import PetsContainer from './containers/PetsContainer'
 import PetsFormContainer from './containers/PetsFormContainer'
@@ -11,6 +12,7 @@ import NavBar from './components/NavBar';
 
 
 function App() {
+
   return (
     <div className="App">
 
@@ -21,7 +23,8 @@ function App() {
           <Route exact path="/">
             <PetsContainer />
           </Route>
-          <Route exact path="/pets/new">Add Pet</Route>
+          <Route exact path="/pets/new" render={(routerProps) => <PetsFormContainer anotherProp={"additional props like this"} {...routerProps}/>}>
+          </Route>
        </Switch>
      </Router>
     </div>

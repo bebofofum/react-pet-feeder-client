@@ -5,7 +5,7 @@ const PetList = ({pets}) => {
     return(
         <div>
             <h1>Pets</h1>
-            <ul>{pets.map(pet => <PetListItem pet={pet} />)}</ul>
+            <ul>{pets.map(pet => <PetListItem key={pet.id} pet={pet} />)}</ul>
         </div>
         
     )
