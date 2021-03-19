@@ -16,6 +16,20 @@ const NavBar = () => {
           to="/pets/new"
           exact
         >Add Pet</NavLink>
+        <NavLink 
+          className="inline-block bg-gray-700 px-4 py-3 rounded-md"
+          activeClassName="text-green-500"
+          to="/owners/"
+          exact
+        >Owners</NavLink>
+
+        <NavLink 
+          className="inline-block bg-gray-700 px-4 py-3 rounded-md"
+          activeClassName="text-green-500"
+          to="/owners/new"
+          exact
+        >Add Owner</NavLink>
+
       
     </div>
   );

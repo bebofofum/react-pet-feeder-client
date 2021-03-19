@@ -10,6 +10,9 @@ import PetsContainer from './containers/PetsContainer'
 import PetsFormContainer from './containers/PetsFormContainer'
 import NewFeedingContainer from './containers/NewFeedingContainer'
 
+import OwnersContainer from './containers/OwnersContainer'
+import OwnersFormContainer from './containers/OwnersFormContainer'
+
 import NavBar from './components/NavBar';
 
 
@@ -32,6 +35,13 @@ function App() {
           <Route 
             exact path="/pets/:pet_id/feedings/new" 
             render={(routerProps) => <NewFeedingContainer {...routerProps}/>} />
+          <Route 
+            exact path="/owners/"> 
+              <OwnersContainer />
+          </Route>
+          <Route 
+            exact path="/owners/new" 
+            render={(routerProps) => <OwnersFormContainer {...routerProps}/>} />
 
        </Switch>
      </Router>
