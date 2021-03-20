@@ -34,7 +34,7 @@ function App() {
             render={(routerProps) => <PetsFormContainer anotherProp={"additional props like this"} {...routerProps}/>} />
           <Route 
             exact path="/pets/:pet_id/feedings/new" 
-            render={(routerProps) => <NewFeedingContainer {...routerProps}/>} />
+            render={(routerProps) => <NewFeedingContainer someOwnerProp={"how do I get this?"} {...routerProps}/>} />
           <Route 
             exact path="/owners/"> 
               <OwnersContainer />

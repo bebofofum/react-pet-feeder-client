@@ -3,9 +3,28 @@ import React, { Component } from 'react'
 class NewFeedingContainer extends Component {
 
     state = {
+        owners: [],
+        ownerId: 0,
         description: "",
         category: "",
         completed: false
+    }
+
+    componentDidMount(){
+        fetch("http://localhost:3001/owners", {
+            method: "get",
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            }
+        })
+        .then(response => response.json())
+        .then(ownersJson => {
+            this.setState({
+                owners: ownersJson,
+            })
+        })
+
     }
 
     handleOnChange = (e) => {
@@ -23,6 +42,7 @@ class NewFeedingContainer extends Component {
     handleSubmit = (e) => {
         e.preventDefault();
         const petId = this.props.match.params.pet_id
+        // const ownerId = this.state.owner
 
         fetch("http://localhost:3001/feedings", {
             method: "post",
@@ -43,6 +63,15 @@ class NewFeedingContainer extends Component {
     }
 
     render(){
+        const { owners } = this.state;
+
+        let ownersList = owners.length > 0
+		&& owners.map((owner, i) => {
+		return (
+			<option key={i} value={owner.id}>{owner.name}</option>
+		)
+	}, this);
+
         return(
             <form
                 onSubmit={this.handleSubmit} 
@@ -75,6 +104,19 @@ class NewFeedingContainer extends Component {
                             <option value="Morning">Morning</option>
                             <option value="Evening">Evening</option>
                             <option value="Special">Special</option>
+                    </select>
+
+                </fieldset>
+                <fieldset className="flex space-x-5 mt-3">
+                    <label 
+                        htmlFor="ownerId"
+                        className="block">Who Fed/is Feeding?</label>
+                    <select 
+                        name="ownerId"
+                        value={this.state.ownerId}
+                        onChange={this.handleOnChange}
+                        id="ownerId">
+                        {ownersList}
                     </select>
 
                 </fieldset>
