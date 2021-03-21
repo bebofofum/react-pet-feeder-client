@@ -8,3 +8,6 @@ export const SUCCESSFULLY_LOADED_OWNERS = 'SUCCESSFULLY_LOADED_OWNERS';
 // not implemented yet
 export const ADD_PET = 'ADD_PET';
 export const FAILED_LOADING_PETS = 'FAILED_LOADING_PETS';
+
+export const ADD_OWNER= 'ADD_OWNER';
+export const FAILED_LOADING_OWNERS = 'FAILED_LOADING_OWNERS';

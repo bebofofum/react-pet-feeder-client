@@ -19,7 +19,6 @@ export const fetchPets = () => {
                type: SUCCESSFULLY_LOADED_PETS,
                payload: petsJson
             })
-
         })
 
     }

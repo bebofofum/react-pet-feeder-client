@@ -9,6 +9,8 @@ const initialState = {
     list: []
 }
 
+// IMPORTANT! This reducer gets functionality by being added to the combineReduer (RootReducer)
+
 export default function petsReducer(state = initialState, 
     action) {
         switch(action.type){
