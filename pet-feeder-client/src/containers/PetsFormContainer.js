@@ -1,4 +1,6 @@
 import React, { Component } from 'react'
+import { connect } from 'react-redux';
+import { createPet } from '../actions/pets';
 
 class PetsFormContainer extends Component {
 
@@ -14,22 +16,10 @@ class PetsFormContainer extends Component {
     }
 
     handleSubmit = (e) => {
-        e.preventDefault();
-
-        fetch("http://localhost:3001/pets", {
-            method: "post",
-            headers: {
-                'Accept': 'application/json',
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({pet: this.state})
-        })
-        .then(response => response.json())
-        .then(petJson => {
+        e.preventDefault(); 
+        this.props.dispatchCreatePet(this.state).then(petJson => {
             this.props.history.push('/')
         })
-
-
     }
 
 
@@ -69,4 +59,15 @@ class PetsFormContainer extends Component {
 
 }
 
-export default PetsFormContainer
+const mapStateToProps = (state) => {
+    return {
+    }
+}
+
+const mapDispatchToProps = (dispatch) => {
+    return {
+        dispatchCreatePet: (formData) => dispatch(createPet(formData))
+    }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(PetsFormContainer)

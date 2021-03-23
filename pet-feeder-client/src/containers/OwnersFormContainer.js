@@ -1,4 +1,7 @@
-import React, { Component } from 'react'
+import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import { createOwner } from '../actions/owners'
+
 
 class OwnersFormContainer extends Component {
     state = {
@@ -14,20 +17,23 @@ class OwnersFormContainer extends Component {
     handleOnSubmit = (e) => {
         e.preventDefault();
 
+        this.props.dispatchCreateOwner(this.state).then(ownerJson => {
+                this.props.history.push('/owners')
+        })
 
-        fetch("http://localhost:3001/owners", {
-            method: "post",
-            headers: {
-                'Accept': 'application/json',
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({owner: this.state})
-        })
-        .then(response => response.json())
-        .then(ownerJson => {
-            console.log("adding this", ownerJson)
-            this.props.history.push('/owners')
-        })
+        // fetch("http://localhost:3001/owners", {
+        //     method: "post",
+        //     headers: {
+        //         'Accept': 'application/json',
+        //         'Content-Type': 'application/json'
+        //     },
+        //     body: JSON.stringify({owner: this.state})
+        // })
+        // .then(response => response.json())
+        // .then(ownerJson => {
+        //     console.log("adding this", ownerJson)
+        //     this.props.history.push('/owners')
+        // })
     }
 
 
@@ -55,4 +61,16 @@ class OwnersFormContainer extends Component {
     }
 }
 
-export default OwnersFormContainer
+const mapStateToProps = () => {
+    return {
+
+    }
+}
+
+const mapDispatchToProps = (dispatch) => {
+    return {
+        dispatchCreateOwner: (formData) => dispatch(createOwner(formData))
+    }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(OwnersFormContainer)

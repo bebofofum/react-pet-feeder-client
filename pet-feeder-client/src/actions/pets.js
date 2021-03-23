@@ -1,6 +1,37 @@
 import { 
     START_LOADING_PETS, 
-    SUCCESSFULLY_LOADED_PETS } from '.';
+    SUCCESSFULLY_LOADED_PETS,
+    SUCCESSFULLY_CREATED_PET,
+    ERROR_CREATING_PET
+ } from '.';
+
+
+export const createPet = (formData) => {
+    return (dispatch) => {
+        return fetch("http://localhost:3001/pets", {
+            method: "post",
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            },
+        body: JSON.stringify({pet: formData})
+    })
+    .then(response => response.json())
+    .then(petJson => {
+        dispatch({
+            type: SUCCESSFULLY_CREATED_PET,
+            payload: petJson
+        })
+    })
+    .catch(errors => {
+        dispatch({
+            type: ERROR_CREATING_PET,
+            payload: errors
+        })
+    })
+
+    }
+}
 
 
 export const fetchPets = () => {

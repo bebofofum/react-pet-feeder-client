@@ -41,7 +41,7 @@ class PetsContainer extends Component {
     render(){
         return (
             <section className="max-w-2xl w-10/12 mx-auto mt-20">
-                {this.props.loadingState === "inProgress" ? 
+                {this.props.loadingState !== "successful" ? 
                 ("loading spinner") :
                 (<PetList pets={this.props.pets} />) }
             </section>

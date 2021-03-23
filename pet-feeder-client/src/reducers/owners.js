@@ -1,12 +1,14 @@
 import {
-    ADD_OWNER, 
     START_LOADING_OWNERS, 
     SUCCESSFULLY_LOADED_OWNERS,
+    SUCCESSFULLY_CREATED_OWNER,
+    ERROR_CREATING_OWNER,
     FAILED_LOADING_OWNERS } from '../actions';
 
 const initialState = {
     loadingOwnerState: "notStarted",
-    ownerList: []
+    ownerList: [],
+    errors: {}
 }
 
 // IMPORTANT! This reducer gets functionality by being added to the combineReduer (RootReducer)
@@ -23,6 +25,17 @@ export default function ownersReducer(state = initialState,
                 return {
                     ownerList: action.payload,
                     loadingOwnerState: "successful"
+                }
+            case SUCCESSFULLY_CREATED_OWNER:
+                return {
+                    ...state,
+                    ownerList: state.ownerList.concat(action.payload),
+                    errors: {}
+                }
+            case ERROR_CREATING_OWNER:
+                return {
+                    ...state,
+                    errors: action.payload
                 }
 
             default:
