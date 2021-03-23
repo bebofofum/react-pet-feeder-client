@@ -10,7 +10,6 @@ export const START_LOADING_OWNERS = 'START_LOADING_OWNERS';
 export const SUCCESSFULLY_LOADED_OWNERS = 'SUCCESSFULLY_LOADED_OWNERS';
 
 export const SUCCESSFULLY_CREATED_OWNER = 'SUCCESSFULLY_CREATED_OWNER';
-export const ERROR_CREATING_OWNER = 'ERROR_CREATING_OWNER';
 
 
 //pets/:pet_id/feedings actions? Where this is confusing is that I'm not going to that route to view but I will need this route for fetch

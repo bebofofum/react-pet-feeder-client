@@ -1,8 +1,7 @@
 import { 
     START_LOADING_OWNERS, 
     SUCCESSFULLY_LOADED_OWNERS,
-    SUCCESSFULLY_CREATED_OWNER,
-    ERROR_CREATING_OWNER
+    SUCCESSFULLY_CREATED_OWNER
  } from './index';
 
 
@@ -16,17 +15,17 @@ import {
              },
              body: JSON.stringify({owner: formData})
          })
-         .then(response => response.json())
+         .then(response => {
+             if (response.ok) {
+                 return response.json()
+                } else {
+                    return response.json().then(errors => Promise.reject(errors))
+                }
+            })
          .then(ownerJson => {
              dispatch({
                  type: SUCCESSFULLY_CREATED_OWNER,
                  payload: ownerJson
-             })
-         })
-         .catch(errors => {
-             dispatch({
-                 type: ERROR_CREATING_OWNER,
-                 payload: errors
              })
          })
      }

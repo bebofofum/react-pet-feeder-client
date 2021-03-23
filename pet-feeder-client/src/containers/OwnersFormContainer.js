@@ -6,6 +6,7 @@ import { createOwner } from '../actions/owners'
 class OwnersFormContainer extends Component {
     state = {
         name: "",
+        errors: {}
     }
 
     handleOnChange = (e) => {
@@ -19,6 +20,12 @@ class OwnersFormContainer extends Component {
 
         this.props.dispatchCreateOwner(this.state).then(ownerJson => {
                 this.props.history.push('/owners')
+        })
+        .catch(errors => {
+            console.log("these errors happened", errors)
+            this.setState({
+                errors: errors
+            })
         })
 
         // fetch("http://localhost:3001/owners", {
@@ -41,9 +48,11 @@ class OwnersFormContainer extends Component {
         return(
             <form className="max-w-2xl w-10/12 mx-auto mt-20 shadow-lg px-4 py-6" onSubmit={this.handleOnSubmit}>
                 <h1 className="text-center text-2xl font-semibold pb-4">Add An Owner</h1>
-                <fieldset className="flex space-x-5 mt-3" >
+                <fieldset >
+                    <p className="text-red-400 h-8">{this.state.errors.name}</p>
+
                     <input 
-                        className="w-full border p-2 py-3 rounded-md"
+                        className="w-full border p-4 mb-4 rounded-md"
                         type="text" 
                         name="name" 
                         onChange={this.handleOnChange}

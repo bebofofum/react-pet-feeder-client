@@ -2,7 +2,6 @@ import {
     START_LOADING_OWNERS, 
     SUCCESSFULLY_LOADED_OWNERS,
     SUCCESSFULLY_CREATED_OWNER,
-    ERROR_CREATING_OWNER,
     FAILED_LOADING_OWNERS } from '../actions';
 
 const initialState = {
@@ -31,11 +30,6 @@ export default function ownersReducer(state = initialState,
                     ...state,
                     ownerList: state.ownerList.concat(action.payload),
                     errors: {}
-                }
-            case ERROR_CREATING_OWNER:
-                return {
-                    ...state,
-                    errors: action.payload
                 }
 
             default:

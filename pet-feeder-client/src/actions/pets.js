@@ -2,7 +2,6 @@ import {
     START_LOADING_PETS, 
     SUCCESSFULLY_LOADED_PETS,
     SUCCESSFULLY_CREATED_PET,
-    ERROR_CREATING_PET
  } from '.';
 
 
@@ -16,19 +15,19 @@ export const createPet = (formData) => {
             },
         body: JSON.stringify({pet: formData})
     })
-    .then(response => response.json())
+    .then(response => {
+        if (response.ok) {
+            return response.json()
+           } else {
+               return response.json().then(errors => Promise.reject(errors))
+           }
+       })
     .then(petJson => {
-        dispatch({
-            type: SUCCESSFULLY_CREATED_PET,
-            payload: petJson
+            dispatch({
+                type: SUCCESSFULLY_CREATED_PET,
+                payload: petJson
+            })
         })
-    })
-    .catch(errors => {
-        dispatch({
-            type: ERROR_CREATING_PET,
-            payload: errors
-        })
-    })
 
     }
 }

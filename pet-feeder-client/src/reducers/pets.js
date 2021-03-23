@@ -2,7 +2,6 @@ import {
     START_LOADING_PETS, 
     SUCCESSFULLY_LOADED_PETS,
     SUCCESSFULLY_CREATED_PET,
-    ERROR_CREATING_PET,
     START_LOADING_PET_FEEDINGS,
     SUCCESSFULLY_LOADED_PET_FEEDINGS,
     FAILED_LOADING_PETS } from '../actions';
@@ -33,11 +32,6 @@ export default function petsReducer(state = initialState,
                     ...state,
                     list: state.list.concat(action.payload),
                     errors: {}
-                };
-            case ERROR_CREATING_PET:
-                return {
-                    ...state,
-                    errors: action.payload
                 };
             case SUCCESSFULLY_LOADED_PET_FEEDINGS:
                 return {

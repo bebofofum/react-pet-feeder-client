@@ -6,7 +6,8 @@ class PetsFormContainer extends Component {
 
     state = {
         name: "",
-        species: ""
+        species: "",
+        errors: {}
     }
 
     handleOnChange = (e) => {
@@ -20,6 +21,12 @@ class PetsFormContainer extends Component {
         this.props.dispatchCreatePet(this.state).then(petJson => {
             this.props.history.push('/')
         })
+        .catch(errors => {
+            console.log("these errors happened", errors)
+            this.setState({
+                errors: errors
+            })
+        })
     }
 
 
@@ -28,16 +35,18 @@ class PetsFormContainer extends Component {
         return(
             <form className="max-w-2xl w-10/12 mx-auto mt-20 shadow-lg px-4 py-6" onSubmit={this.handleSubmit}>
                 <h1 className="text-center text-2xl font-semibold pb-4">Add Your Pet</h1>
-                <div className="flex space-x-5 mt-3" >
+                <div className="mt-3" >
+                    <p className="text-red-400 h-8">{this.state.errors.name}</p>
+
                     <input 
-                        className="border p-2 py-3 w-1/2 rounded-md"
+                        className="border p-2 py-3 mb-3 w-full rounded-md"
                         onChange={this.handleOnChange}
                         type="text" 
                         name="name" 
                         value={this.state.name}
                         placeholder = "Your Pet's Name" />
                     <input 
-                        className="border p-2 py-3 w-1/2 rounded-md"
+                        className="border p-2 py-3 w-full  rounded-md"
                         onChange={this.handleOnChange}
                         type="text" 
                         name="species" 
