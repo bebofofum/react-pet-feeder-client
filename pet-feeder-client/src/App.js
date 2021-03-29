@@ -8,6 +8,7 @@ import {
 } from "react-router-dom";
 import PetsContainer from './containers/PetsContainer'
 import PetsFormContainer from './containers/PetsFormContainer'
+import PetFeedingsShowContainer from './containers/PetFeedingsShowContainer'
 import NewFeedingContainer from './containers/NewFeedingContainer'
 
 import OwnersContainer from './containers/OwnersContainer'
@@ -39,6 +40,9 @@ function App() {
             exact path="/owners/"> 
               <OwnersContainer />
           </Route>
+          <Route 
+            exact path="/pets/:pet_id" 
+            render={(routerProps) => <PetFeedingsShowContainer {...routerProps} />} /> 
           <Route 
             exact path="/owners/new" 
             render={(routerProps) => <OwnersFormContainer {...routerProps}/>} />

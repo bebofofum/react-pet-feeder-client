@@ -12,7 +12,7 @@ export const SUCCESSFULLY_LOADED_OWNERS = 'SUCCESSFULLY_LOADED_OWNERS';
 export const SUCCESSFULLY_CREATED_OWNER = 'SUCCESSFULLY_CREATED_OWNER';
 
 
-//pets/:pet_id/feedings actions? Where this is confusing is that I'm not going to that route to view but I will need this route for fetch
+//feedings actions
 export const START_LOADING_PET_FEEDINGS = 'START_LOADING_PET_FEEDINGS';
 export const SUCCESSFULLY_LOADED_PET_FEEDINGS = 'SUCCESSFULLY_LOADED_PET_FEEDINGS';
 
