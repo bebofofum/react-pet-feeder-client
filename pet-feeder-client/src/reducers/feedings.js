@@ -1,5 +1,6 @@
 import { 
-    SUCCESSFULLY_LOADED_PET_FEEDINGS
+    SUCCESSFULLY_LOADED_PET_FEEDINGS,
+    SUCCESSFULLY_CREATED_FEEDING
  } from '../actions'
 
  const initialState = {
@@ -16,7 +17,14 @@ export default function feedingReducer(state=initialState,action) {
                     [action.payload.pet.id]: 'successful'},
                 petFeedingList: state.list.concat(action.payload.feedings)
 
-            }
+            };
+        case SUCCESSFULLY_CREATED_FEEDING:
+            return {
+                ...state,
+                list: state.list.concat(action.payload),
+                errors: {}
+            };
+
 
         default:
             return state;

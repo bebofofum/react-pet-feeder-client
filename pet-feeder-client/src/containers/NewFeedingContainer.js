@@ -1,4 +1,7 @@
 import React, { Component } from 'react'
+import { connect } from 'react-redux';
+import { createFeeding } from '../actions/feedings'
+
 
 class NewFeedingContainer extends Component {
 
@@ -7,7 +10,8 @@ class NewFeedingContainer extends Component {
         ownerId: 0,
         description: "",
         category: "",
-        completed: false
+        completed: false,
+        errors: {}
     }
 
     componentDidMount(){
@@ -41,24 +45,24 @@ class NewFeedingContainer extends Component {
 
     handleSubmit = (e) => {
         e.preventDefault();
-        const petId = this.props.match.params.pet_id
-        // const ownerId = this.state.owner
-
-        fetch("http://localhost:3001/feedings", {
-            method: "post",
-            headers: {
-                'Accept': 'application/json',
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({feeding: this.state, pet_id: petId})
+        //create a new object of state and renderprops data I want and pass that to the dispatch action function?
+        this.props.dispatchCreateFeeding({
+            description: this.state.description,
+            category: this.state.category,
+            completed: this.state.completed,
+            pet_id: this.props.match.params.pet_id,
+            owner_id: this.state.ownerId
+        }).then(feedingJson => {
+            this.props.history.push('/')
         })
-        .then(response => response.json())
-        .then(feedingJson => {
-            console.log(feedingJson)
+        .catch(errors => {
+            console.log("these errors happened", errors)
+            this.setState({
+                errors: errors
+            })
         })
 
-
-
+    
 
     }
 
@@ -146,4 +150,16 @@ class NewFeedingContainer extends Component {
 
 }
 
-export default NewFeedingContainer
+const mapStateToProps = (state) => {
+    return {
+    }
+}
+
+const mapDispatchToProps = (dispatch) => {
+    return {
+        dispatchCreateFeeding: (formData) => dispatch(createFeeding(formData))
+    }
+}
+
+
+export default connect(mapStateToProps, mapDispatchToProps)(NewFeedingContainer)

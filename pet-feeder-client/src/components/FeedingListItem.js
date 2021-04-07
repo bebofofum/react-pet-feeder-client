@@ -2,9 +2,13 @@ import React from 'react'
 
 const FeedingListItem = ({feeding}) => {
     return(
-        <div className="">
-            <p className="text-gray-600 text-l m-3 px-1 p-3" >Description: {feeding.description}</p>
-            <p className="text-gray-600 text-l m-3 px-1 p-3" >Category: {feeding.category}</p>
+        <div className="flex shadow-lg p-5">
+            <div className="w-1/2 ">            
+                <p className="text-gray-600 p-1" >Description: {feeding.description}</p>
+            </div>
+            <div className="w-1/2">
+                <p className="text-gray-600 p-1" >Category: {feeding.category}</p>
+            </div>
 
         </div>
 

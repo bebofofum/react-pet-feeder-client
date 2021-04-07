@@ -12,9 +12,13 @@ export const SUCCESSFULLY_LOADED_OWNERS = 'SUCCESSFULLY_LOADED_OWNERS';
 export const SUCCESSFULLY_CREATED_OWNER = 'SUCCESSFULLY_CREATED_OWNER';
 
 
-//feedings actions
+//actions occuring on /pets/:pet_id
 export const START_LOADING_PET_FEEDINGS = 'START_LOADING_PET_FEEDINGS';
 export const SUCCESSFULLY_LOADED_PET_FEEDINGS = 'SUCCESSFULLY_LOADED_PET_FEEDINGS';
+
+//feedings actions
+export const SUCCESSFULLY_CREATED_FEEDING = 'SUCCESSFULLY_CREATED_FEEDING';
+
 
 // not implemented yet
 export const ADD_PET = 'ADD_PET';
