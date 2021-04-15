@@ -53,7 +53,7 @@ class NewFeedingContainer extends Component {
             pet_id: this.props.match.params.pet_id,
             owner_id: this.state.ownerId
         }).then(feedingJson => {
-            this.props.history.push('/')
+            this.props.history.push(`/pets/${this.props.match.params.pet_id}`)
         })
         .catch(errors => {
             console.log("these errors happened", errors)

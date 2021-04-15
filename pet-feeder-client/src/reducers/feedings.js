@@ -21,7 +21,7 @@ export default function feedingReducer(state=initialState,action) {
         case SUCCESSFULLY_CREATED_FEEDING:
             return {
                 ...state,
-                list: state.list.concat(action.payload),
+                list: state.petFeedingList.concat(action.payload),
                 errors: {}
             };
 
