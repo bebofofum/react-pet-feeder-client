@@ -9,7 +9,7 @@ const OwnerListItem = ({owner}) => {
             <div className="flex-1 pt-1">
                 <li className="font-semibold text-lg tracking-wide" >{owner.name}</li>
             </div>
-            <OwnerDeleteButton />
+            <OwnerDeleteButton ownerId={owner.id} />
         </div>
         <div>
             <CustomButton
