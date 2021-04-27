@@ -61,8 +61,7 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        fetchOwners: () => dispatch(fetchOwners())
-
+        fetchOwners: () => dispatch(fetchOwners()),
     }
 }
 

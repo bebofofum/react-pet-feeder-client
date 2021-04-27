@@ -2,7 +2,8 @@ import {
     START_LOADING_OWNERS, 
     SUCCESSFULLY_LOADED_OWNERS,
     SUCCESSFULLY_CREATED_OWNER,
-    FAILED_LOADING_OWNERS } from '../actions';
+    FAILED_LOADING_OWNERS, 
+    SUCCESSFULLY_REMOVED_OWNER} from '../actions';
 
 const initialState = {
     loadingOwnerState: "notStarted",
@@ -30,6 +31,12 @@ export default function ownersReducer(state = initialState,
                     ...state,
                     ownerList: state.ownerList.concat(action.payload),
                     errors: {}
+                }
+            case SUCCESSFULLY_REMOVED_OWNER:
+                return {
+                    ...state, //hopefully this will take the ownerslist array and return a new array with only owners
+                    ownerList: state.ownerList.filter(owner => owner.id !== action.payload),
+                    errors: {}   
                 }
 
             default:

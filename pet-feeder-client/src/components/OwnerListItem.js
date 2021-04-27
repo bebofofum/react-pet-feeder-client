@@ -11,21 +11,6 @@ const OwnerListItem = ({owner}) => {
             </div>
             <OwnerDeleteButton ownerId={owner.id} />
         </div>
-        <div>
-            <CustomButton
-                text="Round Button"
-                type="button"
-                buttonStyle="rounded"
-                handleClick={() => console.log("Clicked!")}
-            />
-            <CustomButton
-                text="Outline Button"
-                type="button"
-                buttonStyle="outline"
-                handleClick={() => console.log("Different Click!")}
-            />
-
-        </div>
         </div>
     )
 }

@@ -1,4 +1,7 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import { removeOwner } from '../actions/owners';
+
 
 class OwnerDeleteButton extends Component {
 
@@ -9,15 +12,16 @@ class OwnerDeleteButton extends Component {
     handleClick = () => {
         let setOwnerId = this.props.ownerId
         console.log("clicking this, Owner id =", setOwnerId)
+        this.props.removeOwner(setOwnerId);
 
-        fetch(`http://localhost:3001/owners/${setOwnerId}`, {
-            method: 'DELETE',
-            headers: {
-                "Accept": "application/json",
-                "Content-Type": "application/json",
-            }
-        })
-        .then(() => this.setState({ status: 'Delete successful' }))
+        // fetch(`http://localhost:3001/owners/${setOwnerId}`, {
+        //     method: 'DELETE',
+        //     headers: {
+        //         "Accept": "application/json",
+        //         "Content-Type": "application/json",
+        //     }
+        // })
+        // .then(() => this.setState({ status: 'Delete successful' }))
 
     }
 
@@ -30,4 +34,16 @@ class OwnerDeleteButton extends Component {
     }
 }
 
-export default OwnerDeleteButton
+const mapStateToProps = (state) => {
+    return {
+
+    }
+}
+
+const mapDispatchToProps = (dispatch) => {
+    return {
+        removeOwner: (id) => dispatch(removeOwner(id))
+    }
+}
+
+export default connect(null, mapDispatchToProps)(OwnerDeleteButton)

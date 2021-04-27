@@ -2,7 +2,7 @@ import {
     START_LOADING_OWNERS, 
     SUCCESSFULLY_LOADED_OWNERS,
     SUCCESSFULLY_CREATED_OWNER,
-    SUCCESSFULLY_REMOVE_OWNER
+    SUCCESSFULLY_REMOVED_OWNER
  } from './index';
 
 
@@ -51,5 +51,27 @@ import {
              })
      
 
+        }
+    }
+
+    export const removeOwner = (ownerId) => {
+        return(dispatch) => {
+            return fetch(`http://localhost:3001/owners/${ownerId}`, {
+                method: 'DELETE',
+                headers: {
+                    "Accept": "application/json",
+                    "Content-Type": "application/json",
+                }
+            })
+            .then(response => response.json())
+            //does this return a JSON object off the new list of owners?
+            .then(messageJson => {
+                dispatch({
+                    type: SUCCESSFULLY_REMOVED_OWNER,
+                    payload: ownerId
+                })
+            })
+   
+    
         }
     }
