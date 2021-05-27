@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { fetchPets } from '../actions/pets'
+import { fetchPets } from '../actions/pets';
+import Loader from '../components/Loader';
 import PetList from '../components/PetList'
 
 
@@ -42,7 +43,7 @@ class PetsContainer extends Component {
         return (
             <section className="max-w-2xl w-10/12 mx-auto mt-20">
                 {this.props.loadingState !== "successful" ? 
-                ("loading spinner") :
+                (<Loader />) :
                 (<PetList pets={this.props.pets} />) }
             </section>
         )

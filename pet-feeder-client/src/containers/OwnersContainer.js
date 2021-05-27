@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { fetchOwners } from '../actions/owners';
+import Loader from '../components/Loader';
 import OwnerList from '../components/OwnerList'
 
 
@@ -42,9 +43,9 @@ class OwnersContainer extends Component {
     render(){
         return(
             <section className="max-w-2xl w-10/12 mx-auto mt-20">
-                {this.props.loadingState === 'inProgress' ? (
-                    "loading spinner") : (
-                    <OwnerList owners={this.props.owners} />) }
+                {this.props.loadingState === 'inProgress' ? 
+                (<Loader />) :
+                (<OwnerList owners={this.props.owners} />) }
             </section>
         )
     }

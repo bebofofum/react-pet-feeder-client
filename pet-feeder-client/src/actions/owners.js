@@ -49,7 +49,9 @@ import {
                     payload: ownersJson
                 })
              })
-     
+             .catch(error => {
+                console.log(error)
+            })
 
         }
     }
@@ -71,7 +73,9 @@ import {
                     payload: ownerId
                 })
             })
-   
-    
+            .catch(error => {
+                console.log(error)
+            })
+
         }
     }
