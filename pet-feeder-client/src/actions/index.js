@@ -1,3 +1,7 @@
+//login actions hopefully
+export const AUTHENTICATED = 'AUTHENTICATED';
+export const NOT_AUTHENTICATED = 'NOT_AUTHENTICATED';
+
 //pet actions
 export const START_LOADING_PETS = 'START_LOADING_PETS';
 export const SUCCESSFULLY_LOADED_PETS = 'SUCCESSFULLY_LOADED_PETS';
