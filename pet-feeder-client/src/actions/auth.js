@@ -34,10 +34,19 @@ export const signUpUser = (credentials) => {
         .then(res => {
             if(res.ok) {
                 setToken(res.headers.get("Authorization"))
+                return res.json()   
+            } else {
+                return res.json().then(errors => {
+                    dispatch({ type: NOT_AUTHENTICATED })
+                    return Promise.reject(errors)
+                })
             }
         })
-
+        .then(userJson => {
+            dispatch({
+                type: AUTHENTICATED,
+                payload: userJson
+            })
+        })
     }
-
-
 }
