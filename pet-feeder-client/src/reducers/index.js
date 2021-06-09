@@ -6,5 +6,6 @@ import feedingReducer from './feedings';
 export default combineReducers({
     pets: petsReducer,
     owners: ownersReducer,
-    feeding: feedingReducer
+    feeding: feedingReducer,
+    auth: (state, action) => 'testing'
 })
