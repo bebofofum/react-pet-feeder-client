@@ -15,7 +15,7 @@ const Logout = ({ dispatchUserLogout }) => { //create a function, pass in the di
 
     return ( //use parens after return to say read this next thing as your return value
         <button 
-            className="w-full mt-6 bg-indigo-500 hover:bg-indigo-800 transition-all duration-200 text-white font-semibold p-3 rounded-md"
+            className="bg-gray-700 px-4 py-3 rounded-md"
             onClick={handleOnClick}>
         Log Out
         </button>
