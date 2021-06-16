@@ -16,6 +16,13 @@ import OwnersFormContainer from './containers/OwnersFormContainer'
 
 import NavBar from './components/NavBar';
 
+import Signup from './components/auth/Signup';
+import Login from './components/auth/Login';
+
+import ProtectedRoute from './components/ProtectedRoute'
+import withAuth from './components/auth/withAuth'
+
+
 
 function App() {
 
@@ -48,6 +55,12 @@ function App() {
           <Route 
             exact path="/owners/new" 
             render={(routerProps) => <OwnersFormContainer {...routerProps}/>} />
+          <Route 
+            exact path="/signup" component={Signup} />
+          <Route 
+            exact path="/login" component={Login} />
+          <Route 
+            exact path="/protected_route" component={withAuth(ProtectedRoute)} />
 
        </Switch>
      </Router>
