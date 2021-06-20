@@ -2,9 +2,10 @@ import {
     START_LOADING_PETS, 
     SUCCESSFULLY_LOADED_PETS,
     SUCCESSFULLY_CREATED_PET,
+    SUCCESSFULLY_REMOVED_PET
  } from '.';
 
-
+// our action creator to receive form data and persist it to our api. This returns a promise
 export const createPet = (formData) => {
     return (dispatch) => {
         return fetch("http://localhost:3001/pets", {
@@ -32,7 +33,7 @@ export const createPet = (formData) => {
     }
 }
 
-
+// our action creator that retrieves all pets from api
 export const fetchPets = () => {
     return(dispatch) => {
         dispatch({type: START_LOADING_PETS})
@@ -50,6 +51,27 @@ export const fetchPets = () => {
                payload: petsJson
             })
         })
+
+    }
+}
+
+export const removePet = (petId) => {
+    return (dispatch) => {
+        return fetch(`http://localhost:3001/pets/${petId}`, {  //send HTTP DELETE request to api to remove pets/:pet_id. then return message json from controller action
+            method: 'DELETE',
+            headers: {
+                "Accept": "application/json",
+                "Content-Type": "application/json"
+            }
+        })
+        .then(response => response.json())
+        .then(messageJson => { //then dispatch action to reducer with type and payload
+            dispatch({
+                type: SUCCESSFULLY_REMOVED_PET,
+                payload: petId
+            })
+        })
+        .catch(error => console.log(error))
 
     }
 }
